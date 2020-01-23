@@ -1,0 +1,123 @@
+﻿<Window x:Class="Miless.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Miless"
+        mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal" 
+        TextOptions.TextRenderingMode="Auto"        
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        Title="AddressWindow" Height="756.555" Width="467.6"
+        
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        MouseMove="Window_MouseMove"
+        
+        Closing="Address_Closing"
+        Loaded="Address_Loaded"       
+        >
+    <Grid>
+        <Image Source=".\pictures\zurich.png" Stretch="Fill" Margin="0,0,-0.2,0.4" >
+
+        </Image>
+        <Canvas >
+            <Label Height="45" Width="89" 
+                   Canvas.Left="1050" Canvas.Top="10"
+                   FontSize="26">
+                Miless
+            </Label>
+            <Button Name="AddFriend"
+                materialDesign:ButtonAssist.CornerRadius="20" 
+                    Canvas.Left="58" Canvas.Top="638" Height="86" Width="88"
+                    Content="添加&#xD;&#xA;好友" Opacity="0.9"                    
+                    FontFamily="Microsoft Yahei"
+                    Background="SteelBlue"
+                    Foreground="Black"             
+                    FontSize="24"
+                    Click="AddFriend_Click">
+
+            </Button>
+            <Button Name="GroupChat"
+                materialDesign:ButtonAssist.CornerRadius="20" 
+                    Canvas.Left="235" Canvas.Top="639" Height="86" Width="89"
+                    Content="发起&#xD;&#xA;群聊" Opacity="0.9"                    
+                    FontFamily="Microsoft Yahei"
+                    Background="SteelBlue"
+                    Foreground="Black"             
+                    FontSize="24"
+                    Click="GroupChat_Click">
+
+            </Button>
+            <Button Name="StartChat"
+                materialDesign:ButtonAssist.CornerRadius="20" 
+                    Canvas.Left="324" Canvas.Top="639" Height="86" Width="88"
+                    Content="开始&#xD;&#xA;聊天" Opacity="0.9"                    
+                    FontFamily="Microsoft Yahei"
+                    Background="SteelBlue"
+                    Foreground="Black"             
+                    FontSize="24"
+                    Click="StartChat_Click">
+
+            </Button>
+            <Button Name="DeleteFriend"
+                materialDesign:ButtonAssist.CornerRadius="20" 
+                    Canvas.Left="146" Canvas.Top="639" Height="86" Width="89"
+                    Content="删除&#xD;&#xA;好友" Opacity="0.9"                    
+                    FontFamily="Microsoft Yahei"
+                    Background="SteelBlue"
+                    Foreground="Black"             
+                    FontSize="24"
+                    Click="DeleteFriend_Click">
+
+            </Button>
+            <Button Name="Exit"
+                materialDesign:ButtonAssist.CornerRadius="20" 
+                    Canvas.Left="58" Canvas.Top="27" Height="55" Width="354"
+                    FontFamily="Microsoft Yahei"
+                    Content="返回登录" 
+                    Opacity="0.9"
+                    Background="SteelBlue"
+                    Foreground="Black"             
+                    FontSize="24"
+                    Click="Exit_Click">
+
+            </Button>
+            <materialDesign:Card 
+                Width="354" Height="516" 
+                Canvas.Left="58" Canvas.Top="103"
+                Background="LightSteelBlue"
+                
+                Opacity="0.7"
+                UniformCornerRadius="20">
+                <Canvas>
+                    <materialDesign:PackIcon Kind="AccountMultiple" Height="50" Width="45" Canvas.Left="60" Canvas.Top="10"></materialDesign:PackIcon>
+                    <Label Name ="Title" Width="218" Height="50" Canvas.Top="10"
+                             FontSize="32" HorizontalContentAlignment="Left"
+                             VerticalContentAlignment="Center" Canvas.Left="126"
+                           >
+                        Friends
+                    </Label>
+                    <ListView x:Name="listFriends" Width="354" Height="435"
+                        materialDesign:ListViewAssist.ListViewItemPadding="20" Canvas.Top="60"
+                              >
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Friend Alias" Width="150" DisplayMemberBinding="{Binding FriendAlias}"/>
+                                <GridViewColumn Header="Friend ID" Width="150" DisplayMemberBinding="{Binding FriendID}"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+
+
+                </Canvas>
+            </materialDesign:Card>
+        </Canvas>
+    </Grid>
+</Window>

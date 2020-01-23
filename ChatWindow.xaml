@@ -1,0 +1,157 @@
+﻿<Window x:Class="Miless.ChatWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Miless"
+        mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal" 
+        TextOptions.TextRenderingMode="Auto"        
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="Microsoft Yahei"
+        
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        Loaded="Window_Loaded"
+        Closing="Window_Closing"   
+        MouseMove="Window_MouseMove"         
+
+    Title="ChatWindow" Height="696.298" Width="682.039">
+    <Window.Resources>
+        <local:MsgVisConverter x:Key="VisualizeConverter"/>
+    </Window.Resources>
+    <Grid>
+        <Image Source=".\pictures\zurich.png" Stretch="Fill" Margin="0,0,-0.2,0.4" />
+
+        <Canvas>
+            <materialDesign:Card Height="105" Width="552" 
+                                 Canvas.Left="10" Canvas.Top="10"
+                                 Background="LightSteelBlue"                
+                Opacity="0.7"
+                UniformCornerRadius="20">
+                <Canvas>
+                    <Label  
+                           Width="79" Height="50" 
+                           Name ="lbAlias"
+                           FontSize="30"
+                        FontFamily="Microsoft Yahei"
+                           Content="昵称:" Canvas.Left="89" Canvas.Top="28"/>
+                    <Label  
+                           Width="78" Height="50" 
+                           Name ="lbID" 
+                           FontSize="30"
+                        FontFamily="Microsoft Yahei"
+                           Content="学号:" Canvas.Left="293" Canvas.Top="28"/>
+
+                    <Label Name="FriendName" 
+                           Width="115" Height="33" 
+                           Canvas.Left="168" Canvas.Top="38"
+                           FontSize="20"
+                           />
+                    <Label Name="FriendID" 
+                           Width="127" Height="33" 
+                           Canvas.Left="376" Canvas.Top="38"
+                           FontSize="20"
+                           />
+                    <materialDesign:PackIcon Name="icHead" Kind="Account" Height="50" Width="45" Canvas.Left="39" Canvas.Top="28"></materialDesign:PackIcon>
+
+                </Canvas>
+
+            </materialDesign:Card>
+            <materialDesign:Card Height="554" Width="662" 
+                                 Canvas.Left="10" Canvas.Top="132"
+                                 Background="LightSteelBlue"                
+                Opacity="0.7"
+                UniformCornerRadius="20">
+                <Canvas>
+                    <materialDesign:Card Width="643" Height="45" Canvas.Top="342" Background="SteelBlue"                
+                Opacity="0.8"
+                                         
+                UniformCornerRadius="20" Canvas.Left="10">
+                        <Canvas>
+                            <materialDesign:PackIcon Name="SendFile"
+                                                     MouseLeftButtonUp="SendFile_MouseLeftButtonUpAsync"
+                                                     Kind="FileDocument" Height="45" Width="60" Canvas.Left="10"/>
+                        </Canvas>
+                    </materialDesign:Card>
+                    <Button Opacity="0.8" IsDefault="True" Name="Sendbtn" Click="Sendbtn_Click" Foreground="Black"
+                materialDesign:ButtonAssist.CornerRadius="20" Background="SteelBlue" Width="116" Height="76" Canvas.Left="536" Canvas.Top="392">
+                        <materialDesign:PackIcon Kind="Send" Height="74" Width="77"/>
+                    </Button>
+
+                    <Button Opacity="0.8" Name="SendUDPbtn" Click="SendUDPbtn_Click"  Foreground="Black" FontSize="20"
+                materialDesign:ButtonAssist.CornerRadius="20" Background="SteelBlue" Width="116" Height="71" Canvas.Left="536" Canvas.Top="473">
+                        UDP传输
+                    </Button>
+
+                    <ListBox x:Name="ChattingWindowListBox" Height="327" Width="642" 
+                             Canvas.Left="10" Canvas.Top="10"
+                             ScrollViewer.CanContentScroll="False"
+                             HorizontalContentAlignment="Stretch">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate x:Name="MessageItem" DataType="{x:Type local:ChattingMessage}">
+                                
+                                    <StackPanel x:Name="spMessage">
+                                    <materialDesign:Card x:Name="SingleMessage_TextMessage" UniformCornerRadius="20" FontSize="16" HorizontalAlignment="{Binding hori}"
+                                                     >
+                                        <TextBlock x:Name="TextMessage" Padding="10"
+                                                   Text="{Binding Content}"
+                                                   HorizontalAlignment="{Binding hori}"
+                                                   VerticalAlignment="Center"
+                                                   Visibility="{Binding CMType, Converter={StaticResource VisualizeConverter}, ConverterParameter={x:Type TextBlock}}">
+
+                                        </TextBlock>
+
+                                    </materialDesign:Card>
+                                    <materialDesign:Card x:Name="SingleMessage_FileName" UniformCornerRadius="20" FontSize="16" HorizontalAlignment="{Binding hori}"
+                                                     >
+
+                                        <TextBlock x:Name="FileName" Text="{Binding Content}" Background="LavenderBlush" 
+                                                   
+                                                   HorizontalAlignment="{Binding hori}"
+                                                   Visibility="{Binding CMType, Converter={StaticResource VisualizeConverter}, ConverterParameter={x:Type Label}}"
+                                                   VerticalAlignment="Center" Padding="10"
+                                                   >
+                                        </TextBlock>
+
+                                    </materialDesign:Card>
+                                    <materialDesign:Card x:Name="SingleMessage_ImageImage" UniformCornerRadius="20" FontSize="16" 
+                                                         HorizontalAlignment="{Binding hori}"
+                                                     >
+
+                                        <Image x:Name="ImageImage" VerticalAlignment="Center" Source="{Binding BitMapSource}"
+                                               Stretch="UniformToFill" Width="300" 
+                                                   HorizontalAlignment="{Binding hori}"
+                                               Visibility="{Binding CMType, Converter={StaticResource VisualizeConverter}, ConverterParameter={x:Type Image}}">
+                                        </Image>
+                                    </materialDesign:Card>
+                                </StackPanel>
+
+
+
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+
+                    </ListBox>
+
+                    <TextBox Name="EditMessage" Width="522" Height="152" 
+                                 Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}"
+                                 Canvas.Left="10" Canvas.Top="392"
+                             FontSize="16">
+
+                    </TextBox>
+                </Canvas>
+
+            </materialDesign:Card>
+            <Button Name="Exit" Click="Exit_Click"
+                    Opacity="0.8" materialDesign:ButtonAssist.CornerRadius="20" Background="SteelBlue" Canvas.Left="562" Canvas.Top="10" Height="105">
+                <materialDesign:PackIcon Kind="Close" Foreground="Black" Height="74" Width="77"/>
+            </Button>
+        </Canvas>
+    </Grid>
+</Window>

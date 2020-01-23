@@ -1,0 +1,85 @@
+﻿<Window x:Class="Miless.AddFriend"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Miless"
+        mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal" 
+        TextOptions.TextRenderingMode="Auto"        
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="Microsoft Yahei"
+        ResizeMode="NoResize"        
+        WindowStartupLocation="CenterScreen"        
+        MouseMove="Window_MouseMove"
+        
+        WindowStyle="None"
+        Title="AddFriend" Height="450" Width="800">
+    <Grid>
+        <Image Source=".\pictures\zurich.png" Stretch="Fill" >
+
+        </Image>
+        <Canvas>
+            <Label Height="53" Width="201" 
+                   Canvas.Left="153" Canvas.Top="23"
+                   FontSize="30">
+                当前登录账号:
+            </Label>
+            <Label Height="45" Width="89" 
+                   Canvas.Left="701" Canvas.Top="10"
+                   FontSize="26">
+                Miless
+            </Label>
+            <Label Name="CurrentAccount"
+                Height="53" Width="201" 
+                   Canvas.Left="398" Canvas.Top="23"
+                   FontSize="30">
+
+            </Label>
+            <TextBox Name="FriendAccount"
+                materialDesign:HintAssist.Hint="好友账号" 
+                     materialDesign:HintAssist.Foreground="Black"                    
+                     
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                     Canvas.Left="268" Canvas.Top="146" Height="62" Width="262"
+                     VerticalContentAlignment="Center"
+                     HorizontalContentAlignment="Center"
+                     Foreground="Black"
+                     FontSize="24">
+            </TextBox>
+            <TextBox Name="FriendName"
+                materialDesign:HintAssist.Hint="好友昵称" 
+                     materialDesign:HintAssist.Foreground="Black"                    
+                     
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                     Canvas.Left="268" Canvas.Top="84" Height="62" Width="262"
+                     VerticalContentAlignment="Center"
+                     HorizontalContentAlignment="Center"
+                     Foreground="Black"
+                     FontSize="24">
+            </TextBox>
+            <Button Name="Enter" IsDefault="True"
+                materialDesign:ButtonAssist.CornerRadius="16"
+                    Foreground="Black"
+                    Opacity="0.9"
+                    Background="SteelBlue"
+                    FontSize="30"
+                    Click="Enter_Click" Height="83" Width="132" Canvas.Left="261" Canvas.Top="242">
+                确认
+            </Button>
+            <Button Name="Cancel"
+                materialDesign:ButtonAssist.CornerRadius="16"
+                    Foreground="Black"
+                    Opacity="0.9"
+                    Background="SteelBlue"
+                    FontSize="30"
+                    Click="Cancel_Click"  Height="83" Width="144" Canvas.Left="398" Canvas.Top="242">
+                取消
+            </Button>
+        </Canvas>
+    </Grid>
+</Window>
